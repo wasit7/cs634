@@ -3,6 +3,7 @@ from scipy.ndimage import filters
 from PIL import Image
 from pylab import *
 
+    
 def getHog(img, pos):
     '''to compute histogram of gradient at pos. 
     Note that this fucntion may access out of bound pixel'''
@@ -17,9 +18,15 @@ def getHog(img, pos):
     theta=arctan2(imgy,imgx)
     t=4*(theta.flatten()/pi+1)
     t=t.astype(int)
-    
+    #generate histogram
     desc = zeros(8)
     desc=bincount(t,None,8)
+    print desc
+    #shift the max to the left
+    n=desc.argmax()
+    desc=concatenate((desc[n:],desc[:n]),axis=0)
+    desc=desc/linalg.norm(desc)*0.99999
+    print desc
     return desc
 
 
@@ -29,5 +36,5 @@ set_cmap('gray')
 imshow(img)
 title('original image')
 pos=ginput(1)
-
-print getHog(img,pos)
+desc = getHog(img,pos)
+print desc
