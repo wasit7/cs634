@@ -21,10 +21,12 @@ M=[]
 for i in range(4):
     qx=q[i,0]
     qy=q[i,1]
-    pv=gin_rc[i][1]
     pu=gin_rc[i][0]
+    pv=gin_rc[i][1]
     
-    M.append([0, 0, 0, qx, qy, 1, pv*qx, pv*qy, pv, qx, qy, 1, 0, 0, 0, pu*qx, pu*qy, pu])
+    M.append([qx, qy, 1, 0, 0, 0, -pu*qx, -pu*qy, -pu])
+    M.append([0, 0, 0, -qx, -qy, -1, pv*qx, pv*qy, pv])
+    
     print(0, 0, 0, qx, qy, 1, pv*qx, pv*qy, pv)
     print(qx, qy, 1, 0, 0, 0, pu*qx, pu*qy, pu)
 
@@ -32,7 +34,12 @@ A=np.array(M).reshape(-1,9)
 U,s,V=np.linalg.svd(A)
 
 #H=H11 H12 H13 H21 H22 H23 H31 H32 H33
-H=np.reshape(V[:,-1],(3,3))
+H=np.reshape(V[-1,:],(3,3))
+#H=H/H[2,2]
 p_new=np.dot(H,q.T)
-p_new=p_new/p_new[2,:]
-plot(p_new[0,:],p_new[1,:],'*b')
+p_new[:,0]=p_new[:,0]/p_new[2,0]
+p_new[:,1]=p_new[:,1]/p_new[2,1]
+p_new[:,2]=p_new[:,2]/p_new[2,2]
+p_new[:,3]=p_new[:,3]/p_new[2,3]
+p_new[:,4]=p_new[:,4]/p_new[2,4]
+plot(p_new[0,:],p_new[1,:],'xb')
