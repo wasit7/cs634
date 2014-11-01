@@ -12,8 +12,8 @@ import cv2
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
 # prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
-nx=5#number of corner
-ny=5
+nx=7#number of corner
+ny=8
 objp = np.zeros((nx*ny,3), np.float32)
 objp[:,:2] = np.mgrid[0:nx,0:ny].T.reshape(-1,2)
 

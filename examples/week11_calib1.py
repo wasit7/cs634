@@ -37,7 +37,7 @@ for fname in images:
         objpoints.append(objp)
 
         cv2.cornerSubPix(gray,corners,(11,11),(-1,-1),criteria)
-        #imgpoints.append(corners2)
+        imgpoints.append(corners)
 
         # Draw and display the corners
         cv2.drawChessboardCorners(img, (nx,ny), corners,ret)
