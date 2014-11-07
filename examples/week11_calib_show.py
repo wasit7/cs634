@@ -11,6 +11,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
+ax.plot([0 1], [0 0],[])
 
 ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1],None,None)
 c=['r', 'g', 'b', 'c', 'm', 'y', 'k']
