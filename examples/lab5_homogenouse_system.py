@@ -18,6 +18,6 @@ A_times_V=np.dot(A,V.T)
 
 print("\nA_times_V:\n {}".format(A_times_V))
 
-#x=np.array([V[0,-1],V[1,-1],V[2,-1]])
-#x=np.reshape(x,(3,1))
-#print("\nAx:\n {}".format(np.dot(A,x))
+x=np.reshape(V[-1,:],[-1,1])
+
+print "\nAx:\n {}".format(np.dot(A,x))

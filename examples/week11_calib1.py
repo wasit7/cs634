@@ -34,9 +34,11 @@ for fname in images:
 
     # If found, add object points, image points (after refining them)
     if ret == True:
+        #objpoints: coordinate in real world        
         objpoints.append(objp)
 
         cv2.cornerSubPix(gray,corners,(11,11),(-1,-1),criteria)
+        #imgpoints: coordinates in an image plane        
         imgpoints.append(corners)
 
         # Draw and display the corners
